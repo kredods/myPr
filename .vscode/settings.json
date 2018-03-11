@@ -1,0 +1,9 @@
+{"editor.formatOnSave": false,
+    "javascript.format.enable": true,
+    "react.beautify.onSave": true,
+    "react.beautify.formatter": "esformatter",
+    "[javascriptreact]": {
+        
+    "editor.formatOnSave": true,
+    }
+}
