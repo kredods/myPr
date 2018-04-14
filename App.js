@@ -3,9 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { WorkoutDetail } from './src/components/modals/workout.detail.component';
 import SecondaryNavigator from './src/components/tabbed.navigation.component';
-
-export default (
-MainNavigator = StackNavigator({
+import { Provider, connect } from 'react-redux';
+import { initAction } from './src/redux/actions';
+import { store } from './src/redux/store';
+const MainNavigator = StackNavigator({
   Tabs: {
     screen: SecondaryNavigator
   },
@@ -18,15 +19,35 @@ MainNavigator = StackNavigator({
     mode: 'modal'
 
   }
-));
+);
 
 
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={ store }>
+        <AppContainer />
+      </Provider>
+      );
+  }
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
+const mapStateToProps = (state) => ({
+  workouts: state.workouts || "Please Wait...",
 });
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initAction: (workouts) => {
+      dispatch(initAction(workouts))
+    }
+  }
+};
+
+const AppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainNavigator);
+
+

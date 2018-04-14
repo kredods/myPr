@@ -2,8 +2,7 @@ import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation';
 import React from 'react';
 import { Highlights } from './pages/highlights.page.component';
 import { Text } from 'native-base';
-import { BottomTab } from './tabbar.component'
-import { Workouts } from './pages/workouts.page.component';
+import  Workouts  from './pages/workouts.page.component';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default (

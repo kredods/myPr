@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, List, ListItem, Container, Button, Content, Header, Tab, Tabs, TabHeading, Icon } from 'native-base';
+import { Text, List, ListItem, Container, Button, Content, Header, Tab, Tabs, TabHeading, Icon, StyleProvider } from 'native-base';
 import { PageHeader } from '../page.header.component';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import getTheme from '../../../native-base-theme/components';
+import commonColor from '../../../native-base-theme/variables/commonColor';
+
 export class WorkoutDetail extends React.Component {
 
     constructor(props) {
@@ -30,12 +33,14 @@ export class WorkoutDetail extends React.Component {
     render() {
         const items = this.workout.setGroups;
         return (
+            <StyleProvider style={getTheme(commonColor)}>
             <Container>
               <PageHeader title={ this.props.navigation.state.params.workout.name } pageProps={ this.props }>
               </PageHeader>
               <Content>
                 <Tabs tabBarUnderlineStyle={ styles.underlineStyle }>
-                  <Tab heading={ <TabHeading activeTextStyle={ styles.activeTabStyle }>
+                  <Tab 
+                  heading={ <TabHeading activeTextStyle={ styles.activeTabStyle }>
                                    <Icon name="camera" />
                                    <Text>View</Text>
                                  </TabHeading> }>
@@ -58,6 +63,7 @@ export class WorkoutDetail extends React.Component {
                 </Tabs>
               </Content>
             </Container>
+            </StyleProvider>
             );
     }
 
