@@ -64,7 +64,7 @@ import {initAction} from '../../redux/actions';
                         return <WorkoutCompmponent navigation={ this.props.navigation } press={ this.workoutClick } workout={ workout } key={ workout.name }>
                                </WorkoutCompmponent>
                     }) }
-                  <Button iconLeft full danger>
+                  <Button iconLeft full danger onPress={()=>{ this.openAddWorkoutModal() }}>
                     <Icon name="circle-with-plus" size={ 25 } color="white" />
                     <Text>Add Workout</Text>
                   </Button>
@@ -72,6 +72,10 @@ import {initAction} from '../../redux/actions';
               </Content>
             </Container>
             );
+    }
+
+    openAddWorkoutModal(){
+        this.props.navigation.navigate('AddWorkoutPage');
     }
 
     workoutClick() {
@@ -103,6 +107,16 @@ class WorkoutCompmponent extends React.Component {
         super();
     }
     render() {
+
+        let maxSet;
+        if(this.props.workout.setGroups.length !== 0){
+            maxSet = (
+                <Text note>
+                  { this.getSetRepRangeForMaxWeight() }
+                </Text>
+            )
+        }
+
         return (
             <ListItem avatar onPress={ () => this.openWorkoutDetail() }>
               <Left>
@@ -116,9 +130,7 @@ class WorkoutCompmponent extends React.Component {
                 </Text>
               </Body>
               <Right>
-                <Text note>
-                  { this.getSetRepRangeForMaxWeight() }
-                </Text>
+                {maxSet}
               </Right>
             </ListItem>
             );

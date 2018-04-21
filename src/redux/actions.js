@@ -3,3 +3,7 @@ export const initAction = (workouts) => ({
     workouts
    });
    
+export const addWorkout = (workout) =>({
+    type: 'ADD_WORKOUT',
+    workout
+});

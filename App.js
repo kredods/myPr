@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { WorkoutDetail } from './src/components/modals/workout.detail.component';
+import AddWorkoutPage from './src/components/modals/add.workout.component';
 import SecondaryNavigator from './src/components/tabbed.navigation.component';
 import { Provider, connect } from 'react-redux';
 import { initAction } from './src/redux/actions';
@@ -12,6 +13,9 @@ const MainNavigator = StackNavigator({
   },
   WorkoutDetail: {
     screen: WorkoutDetail
+  },
+  AddWorkoutPage: {
+    screen: AddWorkoutPage
   }
 },
   {
